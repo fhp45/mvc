@@ -32,4 +32,6 @@
  	
  	<!-- 4.扫描web相关的bean -->
 	 <context:component-scan base-package="springmvc.controller" />
+	 
+	 <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 </beans>
