@@ -31,8 +31,8 @@
         if(username!=undefined&&username.length>0){  
         	var user = {"name":username,"password":password};
             $.ajax({  
-                type:"POST",//type可以为post也可以为get  
-                url:"requestBody",  
+                type:"GET",//type可以为post也可以为get  
+                url:"ajax",  
                 data:JSON.stringify(user),//这行不能省略，如果没有数据向后台提交也要写成data:{}的形式  
                 dataType:"json",//这里要注意如果后台返回的数据不是json格式，那么就会进入到error:function(data){}中 
                 contentType:"application/json",
