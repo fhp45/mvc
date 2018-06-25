@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -91,7 +94,14 @@ public class AnnotationController {
 			userList.add(user);
 		}
 		return userList;
-		
+	}
+	
+	@RequestMapping("encodingFilter")
+	@ResponseBody
+	public String encodingFilter(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println(req.getCharacterEncoding());
+		System.out.println(resp.getCharacterEncoding());
+		return "req.getCharacterEncoding() : " + req.getCharacterEncoding() + ",CharacterEncodingFilter中的forceEncoding会影响response的编码 resp.getCharacterEncoding() : " + resp.getCharacterEncoding();
 	}
 	
 }

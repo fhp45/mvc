@@ -5,6 +5,48 @@
    
 	<display-name>mymvc</display-name>
 	
+	
+	<!-- Filter究竟是干什么的呢？以及原理是什么？其实很简单，点击下面的CharacterEncodingFilter就会发现，
+		过滤器大致的作用就是用来对request进行预处理，或者在response返回到界面前进行处理工作的。
+		下面定义了三个过滤器，我们会发现过滤器是按照顺序的，最终response的编码为UTF-8,但是编码却是乱的
+		【因为response是ISO-8859-1的编码，再解码成UTF-8时已经不可能正确显示了】
+	 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>preHandleFilter</filter-name>
+		<filter-class>springmvc.filter.PreHandleFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>preHandleFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>PastHandleFilter</filter-name>
+		<filter-class>springmvc.filter.PastHandleFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PastHandleFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<servlet>
 		<servlet-name>mvcServlet</servlet-name>
 		<servlet-class>
