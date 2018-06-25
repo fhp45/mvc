@@ -22,16 +22,19 @@
    <h2>user:${username}</h2>
    <h2>password:${password}</h2>
    
+   <h1>@PathVariable的例子1</h1>
+   <h2>${pathVariable1}</h2>
+   <h2>${pathVariable2}</h2>
    
    <!-- 具体请求是   http://localhost:8080/mymvc/PathVariable/pathVariable1/param1/pathVariable2/param2 -->
    <h1>@PathVariable的例子2</h1>
    <h2>${param1}</h2>
    <h2>${param2}</h2>
    
-   <h1>@PathVariable的例子1</h1>
-   <h2>${pathVariable1}</h2>
-   <h2>${pathVariable2}</h2>
+   
     
+   <h1>@ResponseBody的例子</h1>
+   <h3>具体请求是 ：  http://localhost:8080/mymvc/responseBody </h3>
     <script>  
     $("#requestBody").on("click",function(){  
     	//下面这两个属性

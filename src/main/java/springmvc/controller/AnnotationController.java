@@ -1,5 +1,7 @@
 package springmvc.controller;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import springmvc.pojo.User;
@@ -77,5 +80,18 @@ public class AnnotationController {
 		return mav;
 	}
 	
+	@RequestMapping("responseBody")
+	@ResponseBody
+	public List<User> responseBody() {
+		List<User> userList = new LinkedList<User>();
+		for(int i = 0 ; i < 5 ; i++) {
+			User user = new User();
+			user.setName("No"+ i);
+			user.setPassword("password");
+			userList.add(user);
+		}
+		return userList;
+		
+	}
 	
 }
