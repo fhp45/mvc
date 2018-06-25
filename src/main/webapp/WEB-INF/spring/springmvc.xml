@@ -33,5 +33,16 @@
  	<!-- 4.扫描web相关的bean -->
 	 <context:component-scan base-package="springmvc.controller" />
 	 
+	 <mvc:interceptors>
+	 		<!-- 定义在interceptors下的filter的bean将拦截所有请求 -->
+	 		<bean name="firstInteceptor" class = "springmvc.interceptor.FirstInterceptor"/>
+	 	<mvc:interceptor>
+	 		<!-- 定义在 interceptor中的filter的bean将拦截特定的请求 -->
+	 	    <mvc:mapping path="/inteceptor"/>
+	 		<bean name="secondInterceptor" class = "springmvc.interceptor.SecondInterceptor"/>
+	 	</mvc:interceptor>
+	 </mvc:interceptors>
+	 
+	 
 	 <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 </beans>
