@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import springmvc.model.User;
+import springmvc.mybatis.dao.UserInterface;
 
 public class MybatisDemo1 {
 	private static SqlSessionFactory sqlSessionFactory;
@@ -17,6 +18,7 @@ public class MybatisDemo1 {
 		try {
 			reader = Resources.getResourceAsReader("mybatis/MybatisCfg.xml");
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			sqlSessionFactory.getConfiguration().addMapper(UserInterface.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,8 +33,10 @@ public class MybatisDemo1 {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			User user = (User) session.selectOne(
-					"springmvc.model.UserMapper.GetUserByID", 1);
+			UserInterface userInterface = session.getMapper(UserInterface.class);
+			User user = userInterface.getUserById(1);
+			/*User user = (User) session.selectOne(
+					"springmvc.model.UserMapper.GetUserByID", 1);*/
 			if(user!=null){
 				String userInfo = "名字："+user.getName()+", 年龄："+user.getName()+", 住址："+user.getLocation();
 				System.out.println(userInfo);
