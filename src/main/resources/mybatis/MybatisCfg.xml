@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 如果这里不加的话，在User.xml中resultType就要写全限定名了 -->
+		<typeAlias alias="User" type="springmvc.model.User" />
+	</typeAliases>
+	<environments default="development">
+	    <environment id="development">
+		<transactionManager type="JDBC" />
+			<dataSource type="POOLED">  
+                            <property name="driver" value="com.mysql.jdbc.Driver" />
+			    <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+			    <property name="username" value="root" />
+			    <property name="password" value="" />
+                       </dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		 <!-- 使用了接口注解，下面的xml可以被注释掉啦 -->
+	     <mapper resource="springmvc/model/User.xml" />
+	</mappers>
+</configuration>
