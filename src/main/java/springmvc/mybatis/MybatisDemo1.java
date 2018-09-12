@@ -34,9 +34,10 @@ public class MybatisDemo1 {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			UserInterface userInterface = session.getMapper(UserInterface.class);
-			User user = userInterface.getUserById(1);
-			/*User user = (User) session.selectOne(
-					"springmvc.model.UserMapper.GetUserByID", 1);*/
+			//注解方式
+			//User user = userInterface.getUserById(1);
+			User user = (User) session.selectOne(
+					"springmvc.model.UserMapper.GetUserByID", 1);
 			if(user!=null){
 				String userInfo = "名字："+user.getName()+", 年龄："+user.getName()+", 住址："+user.getLocation();
 				System.out.println(userInfo);
